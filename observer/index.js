@@ -7,8 +7,8 @@ class Web extends Platform {
     super();
   }
 
-  sendMessage() {
-    console.log('RECEIVED MESSAGE ON WEB.');
+  sendMessage(message) {
+    console.log(`ON WEB: ${message}.`);
   }
 }
 
@@ -17,8 +17,8 @@ class Mobile extends Platform {
     super();
   }
 
-  sendMessage() {
-    console.log('RECEIVED MESSAGE ON MOBILE.')
+  sendMessage(message) {
+    console.log(`ON MOBILE: ${message}.`);
   }
 }
 
@@ -27,12 +27,12 @@ class EventManager {
     this.subscribers = [];
   }
 
-  subscribe(message) {
-    this.subscribers.push(message)
+  subscribe(platform) {
+    this.subscribers.push(platform)
   }
 
-  unsubscribe(message) {
-    this.subscribers = this.subscribers.filter((m) => m !== message);
+  unsubscribe(platform) {
+    this.subscribers = this.subscribers.filter((p) => p !== platform);
   }
 
   notify(message) {
@@ -56,7 +56,7 @@ const mobile = new Mobile();
 const web = new Web();
 
 user.events.subscribe(mobile);
-user.text("WOLA QUE ONDA");
+user.text("Hello there!");
 
 user.events.subscribe(web);
-user.text("taquitos al pastor");
+user.text("How are you doing?");
